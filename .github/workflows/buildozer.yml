@@ -16,7 +16,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Build APK
-      run: buildozer android debug
+      run: echo "y" | buildozer android debug
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
