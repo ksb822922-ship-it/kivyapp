@@ -8,15 +8,26 @@ on:
 jobs:
   build:
     runs-on: ubuntu-22.04
-    container:
-      image: kivy/buildozer:latest
 
     steps:
     - uses: actions/checkout@v4
-    - name: Build
-      run: yes | buildozer android debug
-    - uses: actions/upload-artifact@v4
+
+    - name: Build APK with Buildozer (auto-confirm)
+      uses: digreatbrian/buildozer-action@v2
+      with:
+        # Автоматически отвечаем "y" на все вопросы
+        command: echo "y" | buildozer android debug
+
+    - name: Upload build logs
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: buildozer-full-log
+        path: .buildozer/logs/
+
+    - name: Upload APK
       if: success()
+      uses: actions/upload-artifact@v4
       with:
         name: myapp
         path: ./bin/*.apk
