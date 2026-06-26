@@ -9,8 +9,8 @@ source.include_exts = py,png,jpg,kv,atlas
 
 version = 0.1
 
-# Фиксируем Python 3.10 и Kivy 2.3.0 (стабильные)
-requirements = python3==3.10.0,kivy==2.3.0
+# НЕ указываем версию python3 — пусть Buildozer берёт ту, что в образе
+requirements = python3,kivy
 
 orientation = portrait
 fullscreen = 0
