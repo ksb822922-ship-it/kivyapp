@@ -12,17 +12,16 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Build APK with Buildozer (auto-confirm)
+    - name: Build APK with Buildozer
       uses: digreatbrian/buildozer-action@v2
       with:
-        # Автоматически отвечаем "y" на все вопросы
         command: echo "y" | buildozer android debug
 
-    - name: Upload build logs
+    - name: Upload full build log
       if: always()
       uses: actions/upload-artifact@v4
       with:
-        name: buildozer-full-log
+        name: full-build-log
         path: .buildozer/logs/
 
     - name: Upload APK
