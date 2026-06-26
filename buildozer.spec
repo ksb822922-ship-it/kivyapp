@@ -9,7 +9,8 @@ source.include_exts = py,png,jpg,kv,atlas
 
 version = 0.1
 
-requirements = python3,kivy
+# Фиксируем Python 3.10 и Kivy 2.3.0 (стабильные)
+requirements = python3==3.10.0,kivy==2.3.0
 
 orientation = portrait
 fullscreen = 0
@@ -18,7 +19,6 @@ android.api = 33
 android.minapi = 21
 android.ndk = 25c
 android.ndk_api = 24
-# android.sdk = 33  ← УДАЛЯЕМ (устаревший параметр)
 android.archs = arm64-v8a
 android.allow_backup = True
 android.accept_sdk_license = True
