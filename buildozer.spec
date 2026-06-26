@@ -14,7 +14,6 @@ requirements = python3==3.10.0,kivy==2.3.0
 orientation = portrait
 fullscreen = 0
 
-# Android настройки - ОБЯЗАТЕЛЬНО указываем версии
 android.api = 33
 android.minapi = 24
 android.ndk = 23b
@@ -23,7 +22,6 @@ android.sdk = 33
 android.archs = arm64-v8a, armeabi-v7a
 android.allow_backup = True
 
-# НЕ отключаем обновление SDK, чтобы Buildozer мог установить нужные компоненты
 android.skip_update = False
 android.accept_sdk_license = True
 
