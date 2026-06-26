@@ -14,13 +14,12 @@ requirements = python3,kivy
 orientation = portrait
 fullscreen = 0
 
-# Исправленные настройки Android
 android.api = 33
 android.minapi = 21
-android.ndk = 25c                      # ← ИСПРАВЛЕНО: теперь 25c вместо 23b
-android.ndk_api = 24                   # ← добавлено (рекомендуется)
-android.sdk = 33
-android.archs = arm64-v8a              # одна архитектура для ускорения
+android.ndk = 25c
+android.ndk_api = 24
+# android.sdk = 33  ← УДАЛЯЕМ (устаревший параметр)
+android.archs = arm64-v8a
 android.allow_backup = True
 android.accept_sdk_license = True
 
