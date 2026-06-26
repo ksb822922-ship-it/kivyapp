@@ -40,10 +40,32 @@ jobs:
         pip install buildozer
         pip install cython
 
-    - name: Initialize and build with Buildozer
+    - name: Initialize Buildozer
       run: |
-        # Создаем .buildozer папку с правильными правами
-        mkdir -p .buildozer
+        # Инициализируем .buildozer папку
+        buildozer init
+
+    - name: Build with Buildozer
+      run: |
+        # Устанавливаем переменные для Android SDK
+        export ANDROID_HOME=$HOME/.buildozer/android/platform/android-sdk
+        export PATH=$PATH:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools
+        
+        # Создаем необходимые папки
+        mkdir -p $ANDROID_HOME
+        
+        # Устанавливаем SDK командной строки
+        wget -q https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip
+        unzip -q commandlinetools-linux-9477386_latest.zip -d $ANDROID_HOME
+        mkdir -p $ANDROID_HOME/cmdline-tools
+        mv $ANDROID_HOME/cmdline-tools $ANDROID_HOME/cmdline-tools/latest
+        
+        # Принимаем лицензии
+        yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses
+        
+        # Устанавливаем необходимые компоненты
+        $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "platform-tools" "platforms;android-33" "build-tools;33.0.0"
+        
         # Запускаем сборку
         buildozer android debug
 
